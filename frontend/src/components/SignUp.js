@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 const Signup =()=>{
     const [name, setName]=useState("");
     const [password, setPassword]=useState("");
     const [email, setEmail]=useState("");
     const navigate = useNavigate();
+    //  function checks the local storage if user is there it removes the signup functionality for the user and redirects him to the main page
+    useEffect(()=>{
+            const auth= localStorage.getItem('user');
+            if(auth){
+                navigate("/")
+            }
+        })
     const collectdata=async ()=>{
         console.warn(name,email,password)
         let result = await fetch('http://localhost:5000/register',{
@@ -16,6 +23,8 @@ const Signup =()=>{
         });
         result = await result.json()
         console.warn(result);
+        // save data in local storage using key and value pair
+        localStorage.setItem("user", JSON.stringify(result))
         if(result){
             navigate('/')
         }
