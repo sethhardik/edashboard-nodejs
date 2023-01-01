@@ -2,7 +2,8 @@
 const express = require('express');
 require("./db/config");
 const User = require("./db/User");
-const cors = require("cors")
+const cors = require("cors");
+const Product = require('./db/Product');
 // initialize app
 const app = express();
 
@@ -34,6 +35,12 @@ app.post("/login",async(req,resp)=>{
     }
     
 })
+
+app.post("/add-product", async (req,resp)=>{
+    let product = new Product(req.body);
+    let result = await product.save();
+    resp.send(result)
+});
 
 // making app work on 5000 port
 app.listen(5000)
