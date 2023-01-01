@@ -5,6 +5,7 @@ import PrivateComponent from './components/privateComponent';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Signup from './components/SignUp';
 import Login from './components/login';
+import Addproduct from './components/AddProduct';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       navigate to the routes but if he is not signed up he only see signup page on all the tabs*/}
         <Route element={<PrivateComponent />}>
         <Route path='/' element={<h1>Product Listing component</h1>} />
-        <Route path='/add' element={<h1>Add Product component</h1>} />
+        <Route path='/add' element={<h1>{<Addproduct />}</h1>} />
         <Route path='/update' element={<h1>Update Product component</h1>} />
         <Route path='/logout' element={<h1>logout component</h1>} />
         <Route path='/profile' element={<h1>Profile component</h1>} />
