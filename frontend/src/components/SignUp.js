@@ -19,7 +19,7 @@ const Signup =()=>{
             body:JSON.stringify({name,email,password}),
             headers:{
                     'Content-Type': 'application/json'
-                },
+                }
         });
         result = await result.json()
         console.warn(result);
