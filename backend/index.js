@@ -10,12 +10,30 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// 1st api for use
+// register api
 app.post("/register",async (req,resp)=>{
     let user= new User(req.body);
     let result = await user.save();
+    // deleting password from the response json we are sending
+    result = result.toObject();
+    delete result.password;
     resp.send(result)
 });
+
+//  login api
+app.post("/login",async(req,resp)=>{
+    if(req.body.password && req.body.email){
+        let user = await User.findOne(req.body).select("-password");
+        if(user){
+            resp.send(user)
+        }else{
+            resp.send({result:"no user found."})
+        }
+    }else{
+        resp.send({result:"no user found"})
+    }
+    
+})
 
 // making app work on 5000 port
 app.listen(5000)
