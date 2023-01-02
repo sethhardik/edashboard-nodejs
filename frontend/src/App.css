@@ -22,6 +22,14 @@
   margin-top: 3px;
   margin-left: 20px;
 }
+.validation{
+  color: red;
+  margin-top: -25px;
+  display: block;
+  /* margin-left: 20px; */
+  font-size: xx-small;
+  margin-bottom: 5px;
+}
 .login{
   /* margin-left: 30%; */
   margin-top: 100px;
